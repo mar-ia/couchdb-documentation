@@ -18,8 +18,9 @@ Authentication
 
 Interfaces for obtaining session and authorization data.
 
-.. note:: We're also strongly recommend you to
-   :ref:`setup SSL <config/ssl>` to improve all authentication methods security.
+.. note::
+    We're also strongly recommend you to :ref:`setup SSL <config/ssl>` to
+    improve all authentication methods security.
 
 
 .. _api/auth/basic:
@@ -88,181 +89,182 @@ To obtain the first token and thus authenticate a user for the first time, the
 -------------
 
 .. http:post:: /_session
-  :synopsis: Authenticates user by Cookie-based user login
+    :synopsis: Authenticates user by Cookie-based user login
 
-  Initiates new session for specified user credentials by providing `Cookie`
-  value.
+    Initiates new session for specified user credentials by providing `Cookie`
+    value.
 
-  :<header Content-Type: - :mimetype:`application/x-www-form-urlencoded`
-                         - :mimetype:`application/json`
-  :query string next: Enforces redirect after successful login to the specified
-    location. This location is relative from server root. *Optional*.
-  :form name: User name
-  :form password: Password
-  :>header Set-Cookie: Authorization token
-  :>json boolean ok: Operation status
-  :>json string name: Username
-  :>json array roles: List of user roles
-  :code 200: Successfully authenticated
-  :code 302: Redirect after successful authentication
-  :code 401: Username or password wasn't recognized
+    :<header Content-Type: - :mimetype:`application/x-www-form-urlencoded`
+                           - :mimetype:`application/json`
+    :query string next:
+        Enforces redirect after successful login to the
+        specified location. This location is relative from server root.
+        *Optional*.
+    :form name: User name
+    :form password: Password
+    :>header Set-Cookie: Authorization token
+    :>json boolean ok: Operation status
+    :>json string name: Username
+    :>json array roles: List of user roles
+    :code 200: Successfully authenticated
+    :code 302: Redirect after successful authentication
+    :code 401: Username or password wasn't recognized
 
-  **Request**:
+    **Request**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    POST /_session HTTP/1.1
-    Accept: application/json
-    Content-Length: 24
-    Content-Type: application/x-www-form-urlencoded
-    Host: localhost:5984
+        POST /_session HTTP/1.1
+        Accept: application/json
+        Content-Length: 24
+        Content-Type: application/x-www-form-urlencoded
+        Host: localhost:5984
 
-    name=root&password=relax
+        name=root&password=relax
 
-  It's also possible to send data as JSON:
+    It's also possible to send data as JSON:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    POST /_session HTTP/1.1
-    Accept: application/json
-    Content-Length: 37
-    Content-Type: application/json
-    Host: localhost:5984
+        POST /_session HTTP/1.1
+        Accept: application/json
+        Content-Length: 37
+        Content-Type: application/json
+        Host: localhost:5984
 
-    {
-        "name": "root",
-        "password": "relax"
-    }
+        {
+          "name": "root",
+          "password": "relax"
+        }
 
-  **Response**:
+    **Response**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    HTTP/1.1 200 OK
-    Cache-Control: must-revalidate
-    Content-Length: 43
-    Content-Type: application/json
-    Date: Mon, 03 Dec 2012 01:23:14 GMT
-    Server: CouchDB (Erlang/OTP)
-    Set-Cookie: AuthSession=cm9vdDo1MEJCRkYwMjq0LO0ylOIwShrgt8y-UkhI-c6BGw; Version=1; Path=/; HttpOnly
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate
+        Content-Length: 43
+        Content-Type: application/json
+        Date: Mon, 03 Dec 2012 01:23:14 GMT
+        Server: CouchDB (Erlang/OTP)
+        Set-Cookie: AuthSession=cm9vdDo1MEJCRkYwMjq0LO0ylOIwShrgt8y-UkhI-c6BGw; Version=1; Path=/; HttpOnly
 
-    {"ok":true,"name":"root","roles":["_admin"]}
+        {"ok":true,"name":"root","roles":["_admin"]}
 
-  If ``next`` query parameter was provided the response will trigger redirection
-  to the specified location in case of successful authentication:
+    If ``next`` query parameter was provided the response will trigger redirection
+    to the specified location in case of successful authentication:
 
-  **Request**:
+    **Request**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    POST /_session?next=/blog/_design/sofa/_rewrite/recent-posts HTTP/1.1
-    Accept: application/json
-    Content-Type: application/x-www-form-urlencoded
-    Host: localhost:5984
+        POST /_session?next=/blog/_design/sofa/_rewrite/recent-posts HTTP/1.1
+        Accept: application/json
+        Content-Type: application/x-www-form-urlencoded
+        Host: localhost:5984
 
-    name=root&password=relax
+        name=root&password=relax
 
-  **Response**:
+    **Response**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    HTTP/1.1 302 Moved Temporarily
-    Cache-Control: must-revalidate
-    Content-Length: 43
-    Content-Type: application/json
-    Date: Mon, 03 Dec 2012 01:32:46 GMT
-    Location: http://localhost:5984/blog/_design/sofa/_rewrite/recent-posts
-    Server: CouchDB (Erlang/OTP)
-    Set-Cookie: AuthSession=cm9vdDo1MEJDMDEzRTp7Vu5GKCkTxTVxwXbpXsBARQWnhQ; Version=1; Path=/; HttpOnly
+        HTTP/1.1 302 Moved Temporarily
+        Cache-Control: must-revalidate
+        Content-Length: 43
+        Content-Type: application/json
+        Date: Mon, 03 Dec 2012 01:32:46 GMT
+        Location: http://localhost:5984/blog/_design/sofa/_rewrite/recent-posts
+        Server: CouchDB (Erlang/OTP)
+        Set-Cookie: AuthSession=cm9vdDo1MEJDMDEzRTp7Vu5GKCkTxTVxwXbpXsBARQWnhQ; Version=1; Path=/; HttpOnly
 
-    {"ok":true,"name":null,"roles":["_admin"]}
+        {"ok":true,"name":null,"roles":["_admin"]}
 
 
 .. http:get:: /_session
-  :synopsis: Returns Cookie-based login user information
+    :synopsis: Returns Cookie-based login user information
 
-  Returns complete information about authenticated user.
-  This information contains :ref:`userctx_object`, authentication method and
-  available ones and authentication database.
+    Returns complete information about authenticated user.
+    This information contains :ref:`userctx_object`, authentication method and
+    available ones and authentication database.
 
-  :query boolean basic: Accept `Basic Auth` by requesting this resource.
-    *Optional*.
-  :code 200: Successfully authenticated.
-  :code 401: Username or password wasn't recognized.
+    :query boolean basic: Accept `Basic Auth` by requesting this resource.
+        *Optional*.
+    :code 200: Successfully authenticated.
+    :code 401: Username or password wasn't recognized.
 
-  **Request**:
+    **Request**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    GET /_session HTTP/1.1
-    Host: localhost:5984
-    Accept: application/json
-    Cookie: AuthSession=cm9vdDo1MEJDMDQxRDpqb-Ta9QfP9hpdPjHLxNTKg_Hf9w
+        GET /_session HTTP/1.1
+        Host: localhost:5984
+        Accept: application/json
+        Cookie: AuthSession=cm9vdDo1MEJDMDQxRDpqb-Ta9QfP9hpdPjHLxNTKg_Hf9w
 
-  **Response**:
+    **Response**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    HTTP/1.1 200 OK
-    Cache-Control: must-revalidate
-    Content-Length: 175
-    Content-Type: application/json
-    Date: Fri, 09 Aug 2013 20:27:45 GMT
-    Server: CouchDB (Erlang/OTP)
-    Set-Cookie: AuthSession=cm9vdDo1MjA1NTBDMTqmX2qKt1KDR--GUC80DQ6-Ew_XIw; Version=1; Path=/; HttpOnly
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate
+        Content-Length: 175
+        Content-Type: application/json
+        Date: Fri, 09 Aug 2013 20:27:45 GMT
+        Server: CouchDB (Erlang/OTP)
+        Set-Cookie: AuthSession=cm9vdDo1MjA1NTBDMTqmX2qKt1KDR--GUC80DQ6-Ew_XIw; Version=1; Path=/; HttpOnly
 
-    {
-        "info": {
+        {
+          "info": {
             "authenticated": "cookie",
             "authentication_db": "_users",
             "authentication_handlers": [
-                "oauth",
-                "cookie",
-                "default"
+              "oauth",
+              "cookie",
+              "default"
             ]
-        },
-        "ok": true,
-        "userCtx": {
+          },
+          "ok": true,
+          "userCtx": {
             "name": "root",
             "roles": [
                 "_admin"
             ]
+          }
         }
-    }
-
 
 .. http:delete:: /_session
-  :synopsis: Logout Cookie-based user
+    :synopsis: Logout Cookie-based user
 
-  Closes user's session.
+    Closes user's session.
 
-  :code 200: Successfully close session.
-  :code 401: User wasn't authenticated.
+    :code 200: Successfully close session.
+    :code 401: User wasn't authenticated.
 
-  **Request**:
+    **Request**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    DELETE /_session HTTP/1.1
-    Accept: application/json
-    Cookie: AuthSession=cm9vdDo1MjA1NEVGMDo1QXNQkqC_0Qmgrk8Fw61_AzDeXw
-    Host: localhost:5984
+        DELETE /_session HTTP/1.1
+        Accept: application/json
+        Cookie: AuthSession=cm9vdDo1MjA1NEVGMDo1QXNQkqC_0Qmgrk8Fw61_AzDeXw
+        Host: localhost:5984
 
-  **Response**:
+    **Response**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    HTTP/1.1 200 OK
-    Cache-Control: must-revalidate
-    Content-Length: 12
-    Content-Type: application/json
-    Date: Fri, 09 Aug 2013 20:30:12 GMT
-    Server: CouchDB (Erlang/OTP)
-    Set-Cookie: AuthSession=; Version=1; Path=/; HttpOnly
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate
+        Content-Length: 12
+        Content-Type: application/json
+        Date: Fri, 09 Aug 2013 20:30:12 GMT
+        Server: CouchDB (Erlang/OTP)
+        Set-Cookie: AuthSession=; Version=1; Path=/; HttpOnly
 
-    {
-        "ok": true
-    }
+        {
+          "ok": true
+        }
 
 
 .. _api/auth/proxy:
@@ -271,14 +273,14 @@ Proxy Authentication
 ====================
 
 .. note::
-   To use this authentication method make sure that the
-   ``{couch_httpd_auth, proxy_authentication_handler}`` value in added to
-   the list of the active :config:option:`httpd/authentication_handlers`:
+    To use this authentication method make sure that the
+    ``{couch_httpd_auth, proxy_authentication_handler}`` value in added to
+    the list of the active :config:option:`httpd/authentication_handlers`:
 
-   .. code-block:: ini
+    .. code-block:: ini
 
-      [httpd]
-      authentication_handlers = {couch_httpd_oauth, oauth_authentication_handler}, {couch_httpd_auth, cookie_authentication_handler}, {couch_httpd_auth, proxy_authentication_handler}, {couch_httpd_auth, default_authentication_handler}
+        [httpd]
+        authentication_handlers = {couch_httpd_oauth, oauth_authentication_handler}, {couch_httpd_auth, cookie_authentication_handler}, {couch_httpd_auth, proxy_authentication_handler}, {couch_httpd_auth, default_authentication_handler}
 
 
 `Proxy authentication` is very useful in case your application already uses
@@ -321,24 +323,24 @@ headers to CouchDB with related request:
     Server: CouchDB (Erlang/OTP)
 
     {
-        "info": {
-            "authenticated": "proxy",
-            "authentication_db": "_users",
-            "authentication_handlers": [
-                "oauth",
-                "cookie",
-                "proxy",
-                "default"
-            ]
-        },
-        "ok": true,
-        "userCtx": {
-            "name": "foo",
-            "roles": [
-                "users",
-                "blogger"
-            ]
-        }
+      "info": {
+        "authenticated": "proxy",
+        "authentication_db": "_users",
+        "authentication_handlers": [
+          "oauth",
+          "cookie",
+          "proxy",
+          "default"
+          ]
+      },
+      "ok": true,
+      "userCtx": {
+        "name": "foo",
+        "roles": [
+          "users",
+          "blogger"
+          ]
+      }
     }
 
 
@@ -363,56 +365,56 @@ language like Python:
 
 .. code-block:: python
 
-  #!/usr/bin/env python2
-  from oauth import oauth # pip install oauth
-  import httplib
+    #!/usr/bin/env python2
+    from oauth import oauth # pip install oauth
+    import httplib
 
-  URL = 'http://localhost:5984/_session'
-  CONSUMER_KEY = 'consumer1'
-  CONSUMER_SECRET = 'sekr1t'
-  TOKEN = 'token1'
-  SECRET = 'tokensekr1t'
+    URL = 'http://localhost:5984/_session'
+    CONSUMER_KEY = 'consumer1'
+    CONSUMER_SECRET = 'sekr1t'
+    TOKEN = 'token1'
+    SECRET = 'tokensekr1t'
 
-  consumer = oauth.OAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET)
-  token = oauth.OAuthToken(TOKEN, SECRET)
-  req = oauth.OAuthRequest.from_consumer_and_token(
-      consumer,
-      token=token,
-      http_method='GET',
-      http_url=URL,
-      parameters={}
-  )
-  req.sign_request(oauth.OAuthSignatureMethod_HMAC_SHA1(), consumer,token)
+    consumer = oauth.OAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET)
+    token = oauth.OAuthToken(TOKEN, SECRET)
+    req = oauth.OAuthRequest.from_consumer_and_token(
+        consumer,
+        token=token,
+        http_method='GET',
+        http_url=URL,
+        parameters={}
+    )
+    req.sign_request(oauth.OAuthSignatureMethod_HMAC_SHA1(), consumer,token)
 
-  headers = req.to_header()
-  headers['Accept'] = 'application/json'
+    headers = req.to_header()
+    headers['Accept'] = 'application/json'
 
-  con = httplib.HTTPConnection('localhost', 5984)
-  con.request('GET', URL, headers=headers)
-  resp = con.getresponse()
-  print resp.read()
+    con = httplib.HTTPConnection('localhost', 5984)
+    con.request('GET', URL, headers=headers)
+    resp = con.getresponse()
+    print resp.read()
 
 or Ruby:
 
 .. code-block:: ruby
 
-  #!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 
-  require 'oauth' # gem install oauth
+    require 'oauth' # gem install oauth
 
-  URL = 'http://localhost:5984'
-  CONSUMER_KEY = 'consumer1'
-  CONSUMER_SECRET = 'sekr1t'
-  TOKEN = 'token1'
-  SECRET = 'tokensekr1t'
+    URL = 'http://localhost:5984'
+    CONSUMER_KEY = 'consumer1'
+    CONSUMER_SECRET = 'sekr1t'
+    TOKEN = 'token1'
+    SECRET = 'tokensekr1t'
 
-  @consumer = OAuth::Consumer.new CONSUMER_KEY,
-                                  CONSUMER_SECRET,
-                                  {:site => URL}
+    @consumer = OAuth::Consumer.new CONSUMER_KEY,
+                                    CONSUMER_SECRET,
+                                    {:site => URL}
 
-  @access_token = OAuth::AccessToken.new(@consumer, TOKEN, SECRET)
+    @access_token = OAuth::AccessToken.new(@consumer, TOKEN, SECRET)
 
-  puts @access_token.get('/_session').body
+    puts @access_token.get('/_session').body
 
 
 Both snippets produces similar request and response pair:

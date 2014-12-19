@@ -32,11 +32,11 @@ within the server or returned object. For example, the URL fragment
 This reference is structured according to the URL structure, as below.
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   basics
-   server/index
-   database/index
-   document/index
-   ddoc/index
-   local
+    basics
+    server/index
+    database/index
+    document/index
+    ddoc/index
+    local
