@@ -10,7 +10,6 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
-
 .. _externals:
 
 =====================
@@ -144,8 +143,8 @@ There's also an API for adding messages to CouchDB's logs. Its simply::
 
     ["log", $MESG]\n
 
-Where ``$MESG`` is any arbitrary JSON. There is no response from this command. As
-with the config API, the trailing ``\n`` represents a newline byte.
+Where ``$MESG`` is any arbitrary JSON. There is no response from this command.
+As with the config API, the trailing ``\n`` represents a newline byte.
 
 Dynamic Daemons
 +++++++++++++++

@@ -10,7 +10,6 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
-
 |Apache CouchDB(TM)|_ |release| Documentation
 =============================================
 
@@ -31,6 +30,7 @@
     json-structure
     experimental
     contributing
+    guidelines
     whatsnew/index
     cve/index
     about

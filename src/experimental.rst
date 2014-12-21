@@ -50,13 +50,13 @@ Or via NPM::
 .. note:: **NPM in non-standard locations**
 
     If your Node.JS installation doesn’t store binaries in `/usr/local/bin`
-    you will need to adjust CouchDB’s configuration. Add this to your `local.ini`
-    file:
+    you will need to adjust CouchDB’s configuration. Add this to your
+    `local.ini` file:
 
     .. code-block:: ini
 
-      [query_servers]
-      nodejs = /path/to/couchjs-node /path/to/couchdb/share/server/main.js
+        [query_servers]
+        nodejs = /path/to/couchjs-node /path/to/couchdb/share/server/main.js
 
     And then restart your CouchDB instance.
 
@@ -90,8 +90,8 @@ the default header that is sent for everything in /_utils.
 
     .. code-block:: ini
 
-      [csp]
-      enable = true
+        [csp]
+        enable = true
 
 Then restart CouchDB.
 

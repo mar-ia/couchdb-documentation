@@ -10,6 +10,8 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
+.. _json-structure:
+
 ========================
 JSON Structure Reference
 ========================
@@ -373,7 +375,7 @@ Request object
 
 .. code-block:: javascript
 
-  {
+    {
       "body": "undefined",
       "cookie": {
           "AuthSession": "cm9vdDo1MDZBRjQzRjrfcuikzPRfAn-EA37FmjyfM8G8Lw",
@@ -381,73 +383,73 @@ Request object
       },
       "form": {},
       "headers": {
-          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-          "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
-          "Accept-Encoding": "gzip,deflate,sdch",
-          "Accept-Language": "en-US,en;q=0.8",
-          "Connection": "keep-alive",
-          "Cookie": "m=3234:t|3247:t|6493:t|6967:t|34e2:|18c3:t|2c69:t|5acb:t|ca3:t|c01:t|5e55:t|77cb:t|2a03:t|1d98:t|47ba:t|64b8:t|4a01:t; AuthSession=cm9vdDo1MDZBRjQzRjrfcuikzPRfAn-EA37FmjyfM8G8Lw",
-          "Host": "127.0.0.1:5984",
-          "User-Agent": "Mozilla/5.0 (Windows NT 5.2) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75 Safari/535.7"
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
+        "Accept-Encoding": "gzip,deflate,sdch",
+        "Accept-Language": "en-US,en;q=0.8",
+        "Connection": "keep-alive",
+        "Cookie": "m=3234:t|3247:t|6493:t|6967:t|34e2:|18c3:t|2c69:t|5acb:t|ca3:t|c01:t|5e55:t|77cb:t|2a03:t|1d98:t|47ba:t|64b8:t|4a01:t; AuthSession=cm9vdDo1MDZBRjQzRjrfcuikzPRfAn-EA37FmjyfM8G8Lw",
+        "Host": "127.0.0.1:5984",
+        "User-Agent": "Mozilla/5.0 (Windows NT 5.2) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75 Safari/535.7"
       },
       "id": "foo",
       "info": {
-          "committed_update_seq": 2701412,
-          "compact_running": false,
-          "data_size": 7580843252,
-          "db_name": "mailbox",
-          "disk_format_version": 6,
-          "disk_size": 14325313673,
-          "doc_count": 2262757,
-          "doc_del_count": 560,
-          "instance_start_time": "1347601025628957",
-          "purge_seq": 0,
-          "update_seq": 2701412
+        "committed_update_seq": 2701412,
+        "compact_running": false,
+        "data_size": 7580843252,
+        "db_name": "mailbox",
+        "disk_format_version": 6,
+        "disk_size": 14325313673,
+        "doc_count": 2262757,
+        "doc_del_count": 560,
+        "instance_start_time": "1347601025628957",
+        "purge_seq": 0,
+        "update_seq": 2701412
       },
       "method": "GET",
       "path": [
-          "mailbox",
-          "_design",
-          "request",
-          "_show",
-          "dump",
-          "foo"
+        "mailbox",
+        "_design",
+        "request",
+        "_show",
+        "dump",
+        "foo"
       ],
       "peer": "127.0.0.1",
       "query": {},
       "raw_path": "/mailbox/_design/request/_show/dump/foo",
       "requested_path": [
-          "mailbox",
-          "_design",
-          "request",
-          "_show",
-          "dump",
-          "foo"
+        "mailbox",
+        "_design",
+        "request",
+        "_show",
+        "dump",
+        "foo"
       ],
       "secObj": {
-          "admins": {
-              "names": [
-                  "Bob"
-              ],
-              "roles": []
-          },
-          "members": {
-              "names": [
-                  "Mike",
-                  "Alice"
-              ],
-              "roles": []
-          }
+        "admins": {
+          "names": [
+            "Bob"
+          ],
+          "roles": []
+        },
+        "members": {
+          "names": [
+            "Mike",
+            "Alice"
+          ],
+          "roles": []
+        }
       },
       "userCtx": {
-          "db": "mailbox",
-          "name": "Mike",
-          "roles": [
-              "user"
-          ]
+        "db": "mailbox",
+        "name": "Mike",
+        "roles": [
+          "user"
+        ]
       },
       "uuid": "3184f9d1ea934e1f81a24c71bde5c168"
-  }
+    }
 
 
 .. _response_object:
@@ -576,7 +578,7 @@ Security Object
 
 .. code-block:: javascript
 
-  {
+    {
       "admins": {
           "names": [
               "Bob"
@@ -612,11 +614,11 @@ User Context Object
 .. code-block:: javascript
 
     {
-        "db": "mailbox",
-        "name": null,
-        "roles": [
-            "_admin"
-        ]
+      "db": "mailbox",
+      "name": null,
+      "roles": [
+        "_admin"
+      ]
     }
 
 
@@ -636,6 +638,6 @@ View Head Information
 .. code-block:: javascript
 
     {
-        "total_rows": 42,
-        "offset": 3
+      "total_rows": 42,
+      "offset": 3
     }
