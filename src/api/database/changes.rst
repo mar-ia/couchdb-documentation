@@ -528,14 +528,12 @@ feed. For most use-practice cases `filter` functions are very similar to `map`
 ones, so this feature helps to reduce amount of duplicated code.
 
 .. warning::
-
     While :ref:`map functions <mapfun>` doesn't process the design documents,
     using ``_view`` filter forces them to do this. You need to be sure, that
     they are ready to handle documents with *alien* structure without panic
     crush.
 
 .. note::
-
     Using ``_view`` filter doesn't queries the view index files, so you cannot
     use common :ref:`view query parameters <api/ddoc/view>` to additionally
     filter the changes feed by index key. Also, CouchDB doesn't returns

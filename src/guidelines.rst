@@ -24,15 +24,16 @@ The rules are in descending priority.
     This includes configuration files, HTML responses, the HTML output from
     Sphinx etc.
 #. Empty lines
-    * One empty after license.
+    * One empty line after license.
     * No empty line at the end of the file.
 #. Line ending
     * All lines end with \n.
     * No trailing whitespaces.
 #. Line length
-    The maximum line length is 80 characters.
+    * The maximum line length is 80 characters.
+    * ``code-blocks`` may break this limit.
 #. Encoding
-    ``UTF-8`` in all files.
+    All files are ``UTF-8``.
 #. Indent
     * **text**: 4 spaces
     * **code**: 2 spaces
@@ -45,3 +46,9 @@ The rules are in descending priority.
 #. Style
     * Titles are under and overlined with =
     * Subtitles are underlined with =
+    * The amount of = should match tile length.
+    * No empty line after note and warning.
+        .. code-block:: restructuredtext
+
+            .. note::
+                This is a note.

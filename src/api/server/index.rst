@@ -10,7 +10,6 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
-
 .. _api/server:
 
 ======
@@ -23,6 +22,6 @@ configuration information.
 
 .. toctree::
 
-   common
-   authn
-   configuration
+    common
+    authn
+    configuration
