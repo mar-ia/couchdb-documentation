@@ -10,7 +10,6 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
-
 .. _api/design-docs:
 
 ================
@@ -31,7 +30,7 @@ output from your database.
 
 .. toctree::
 
-   common
-   views
-   render
-   rewrites
+    common
+    views
+    render
+    rewrites

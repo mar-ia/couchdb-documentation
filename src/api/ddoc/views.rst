@@ -10,190 +10,189 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
-
 .. _api/ddoc/view:
 
 ``/db/_design/design-doc/_view/view-name``
 ==========================================
 
 .. http:get:: /{db}/_design/{ddoc}/_view/{view}
-  :synopsis: Returns results for the specified stored view
+    :synopsis: Returns results for the specified stored view
 
-  Executes the specified view function from the specified design document.
+    Executes the specified view function from the specified design document.
 
-  :param db: Database name
-  :param ddoc: Design document name
-  :param view: View function name
+    :param db: Database name
+    :param ddoc: Design document name
+    :param view: View function name
 
-  :<header Accept: - :mimetype:`application/json`
-                   - :mimetype:`text/plain`
+    :<header Accept: - :mimetype:`application/json`
+                     - :mimetype:`text/plain`
 
-  :query boolean conflicts: Includes `conflicts` information in response.
-    Ignored if `include_docs` isn't ``true``. Default is ``false``
-  :query boolean descending: Return the documents in descending by key order.
-    Default is ``false``
-  :query json endkey: Stop returning records when the specified key is
-    reached. *Optional*
-  :query json end_key: Alias for `endkey` param
-  :query string endkey_docid: Stop returning records when the specified
-    document ID is reached. *Optional*
-  :query string end_key_doc_id: Alias for `endkey_docid` param
-  :query boolean group: Group the results using the reduce function to a group
-    or single row. Default is ``false``
-  :query number group_level: Specify the group level to be used. *Optional*
-  :query boolean include_docs: Include the associated document with each row.
-    Default is ``false``.
-  :query boolean attachments: Include the Base64-encoded content of
-    :ref:`attachments <api/doc/attachments>` in the documents that are included
-    if `include_docs` is ``true``. Ignored if `include_docs` isn't ``true``.
-    Default is ``false``.
-  :query boolean att_encoding_info: Include encoding information in attachment
-    stubs if `include_docs` is ``true`` and the particular attachment is
-    compressed. Ignored if `include_docs` isn't ``true``. Default is ``false``.
-  :query boolean inclusive_end: Specifies whether the specified end key should
-    be included in the result. Default is ``true``
-  :query json key: Return only documents that match the specified key.
-    *Optional*
-  :query number limit: Limit the number of the returned documents to the
-    specified number. *Optional*
-  :query boolean reduce: Use the reduction function. Default is ``true``
-  :query number skip: Skip this number of records before starting to return
-    the results. Default is ``0``
-  :query string stale: Allow the results from a stale view to be used.
-    Supported values: ``ok`` and ``update_after``. *Optional*
-  :query json startkey: Return records starting with the specified key.
-    *Optional*
-  :query json start_key: Alias for `startkey` param
-  :query string startkey_docid: Return records starting with the specified
-    document ID. *Optional*
-  :query string start_key_doc_id: Alias for `startkey_docid` param
-  :query boolean update_seq: Response includes an ``update_seq`` value
-    indicating which sequence id of the database the view reflects.
-    Default is ``false``
+    :query boolean conflicts: Includes `conflicts` information in response.
+        Ignored if `include_docs` isn't ``true``. Default is ``false``
+    :query boolean descending: Return the documents in descending by key order.
+        Default is ``false``
+    :query json endkey: Stop returning records when the specified key is
+        reached. *Optional*
+    :query json end_key: Alias for `endkey` param
+    :query string endkey_docid: Stop returning records when the specified
+        document ID is reached. *Optional*
+    :query string end_key_doc_id: Alias for `endkey_docid` param
+    :query boolean group: Group the results using the reduce function to a group
+        or single row. Default is ``false``
+    :query number group_level: Specify the group level to be used. *Optional*
+    :query boolean include_docs: Include the associated document with each row.
+        Default is ``false``.
+    :query boolean attachments: Include the Base64-encoded content of
+        :ref:`attachments <api/doc/attachments>` in the documents that are included
+        if `include_docs` is ``true``. Ignored if `include_docs` isn't ``true``.
+        Default is ``false``.
+    :query boolean att_encoding_info: Include encoding information in attachment
+        stubs if `include_docs` is ``true`` and the particular attachment is
+        compressed. Ignored if `include_docs` isn't ``true``. Default is ``false``.
+    :query boolean inclusive_end: Specifies whether the specified end key should
+        be included in the result. Default is ``true``
+    :query json key: Return only documents that match the specified key.
+        *Optional*
+    :query number limit: Limit the number of the returned documents to the
+        specified number. *Optional*
+    :query boolean reduce: Use the reduction function. Default is ``true``
+    :query number skip: Skip this number of records before starting to return
+        the results. Default is ``0``
+    :query string stale: Allow the results from a stale view to be used.
+        Supported values: ``ok`` and ``update_after``. *Optional*
+    :query json startkey: Return records starting with the specified key.
+        *Optional*
+    :query json start_key: Alias for `startkey` param
+    :query string startkey_docid: Return records starting with the specified
+        document ID. *Optional*
+    :query string start_key_doc_id: Alias for `startkey_docid` param
+    :query boolean update_seq: Response includes an ``update_seq`` value
+        indicating which sequence id of the database the view reflects.
+        Default is ``false``
 
-  :>header Content-Type: - :mimetype:`application/json`
-                         - :mimetype:`text/plain; charset=utf-8`
-  :>header ETag: Response signature
-  :>header Transfer-Encoding: ``chunked``
+    :>header Content-Type: - :mimetype:`application/json`
+                           - :mimetype:`text/plain; charset=utf-8`
+    :>header ETag: Response signature
+    :>header Transfer-Encoding: ``chunked``
 
-  :>json number offset: Offset where the document list started
-  :>json array rows: Array of view row objects. By default the information
-    returned contains only the document ID and revision
-  :>json number total_rows: Number of documents in the database/view
-  :>json number update_seq: Current update sequence for the database
+    :>json number offset: Offset where the document list started
+    :>json array rows: Array of view row objects. By default the information
+        returned contains only the document ID and revision
+    :>json number total_rows: Number of documents in the database/view
+    :>json number update_seq: Current update sequence for the database
 
-  :code 200: Request completed successfully
-  :code 400: Invalid request
-  :code 401: Read permission required
-  :code 404: Specified database, design document or view is missed
-  :code 500: View function execution error
+    :code 200: Request completed successfully
+    :code 400: Invalid request
+    :code 401: Read permission required
+    :code 404: Specified database, design document or view is missed
+    :code 500: View function execution error
 
-  **Request**:
+    **Request**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    GET /recipes/_design/ingredients/_view/by_name HTTP/1.1
-    Accept: application/json
-    Host: localhost:5984
+        GET /recipes/_design/ingredients/_view/by_name HTTP/1.1
+        Accept: application/json
+        Host: localhost:5984
 
-  **Response**:
+    **Response**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    HTTP/1.1 200 OK
-    Cache-Control: must-revalidate
-    Content-Type: application/json
-    Date: Wed, 21 Aug 2013 09:12:06 GMT
-    ETag: "2FOLSBSW4O6WB798XU4AQYA9B"
-    Server: CouchDB (Erlang/OTP)
-    Transfer-Encoding: chunked
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate
+        Content-Type: application/json
+        Date: Wed, 21 Aug 2013 09:12:06 GMT
+        ETag: "2FOLSBSW4O6WB798XU4AQYA9B"
+        Server: CouchDB (Erlang/OTP)
+        Transfer-Encoding: chunked
 
-    {
-        "offset": 0,
-        "rows": [
+        {
+          "offset": 0,
+          "rows": [
             {
-                "id": "SpaghettiWithMeatballs",
-                "key": "meatballs",
-                "value": 1
+              "id": "SpaghettiWithMeatballs",
+              "key": "meatballs",
+              "value": 1
             },
             {
-                "id": "SpaghettiWithMeatballs",
-                "key": "spaghetti",
-                "value": 1
+              "id": "SpaghettiWithMeatballs",
+              "key": "spaghetti",
+              "value": 1
             },
             {
-                "id": "SpaghettiWithMeatballs",
-                "key": "tomato sauce",
-                "value": 1
+              "id": "SpaghettiWithMeatballs",
+              "key": "tomato sauce",
+              "value": 1
             }
-        ],
-        "total_rows": 3
-    }
+          ],
+          "total_rows": 3
+        }
 
 .. versionchanged:: 1.6.0 added ``attachments`` and ``att_encoding_info``
-   parameters
+    parameters
 
 .. warning::
-   Using the ``attachments`` parameter to include attachments in view results
-   is not recommended for large attachment sizes. Also note that the
-   Base64-encoding that is used leads to a 33% overhead (i.e. one third) in
-   transfer size for attachments.
+     Using the ``attachments`` parameter to include attachments in view results
+     is not recommended for large attachment sizes. Also note that the
+     Base64-encoding that is used leads to a 33% overhead (i.e. one third) in
+     transfer size for attachments.
 
 
 .. http:post:: /{db}/_design/{ddoc}/_view/{view}
-  :synopsis: Returns certain rows for the specified stored view
+    :synopsis: Returns certain rows for the specified stored view
 
-  Executes the specified view function from the specified design document.
-  Unlike :get:`/{db}/_design/{ddoc}/_view/{view}` for accessing views, the
-  :method:`POST` method supports the specification
-  of explicit keys to be retrieved from the view results. The remainder of the
-  :method:`POST` view functionality is identical to the
-  :get:`/{db}/_design/{ddoc}/_view/{view}` API.
+    Executes the specified view function from the specified design document.
+    Unlike :get:`/{db}/_design/{ddoc}/_view/{view}` for accessing views, the
+    :method:`POST` method supports the specification
+    of explicit keys to be retrieved from the view results. The remainder of the
+    :method:`POST` view functionality is identical to the
+    :get:`/{db}/_design/{ddoc}/_view/{view}` API.
 
-  **Request**:
+    **Request**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    POST /recipes/_design/ingredients/_view/by_name HTTP/1.1
-    Accept: application/json
-    Content-Length: 37
-    Host: localhost:5984
+        POST /recipes/_design/ingredients/_view/by_name HTTP/1.1
+        Accept: application/json
+        Content-Length: 37
+        Host: localhost:5984
 
-    {
-        "keys": [
+        {
+          "keys": [
             "meatballs",
             "spaghetti"
-        ]
-    }
+          ]
+        }
 
-  **Response**:
+    **Response**:
 
-  .. code-block:: http
+    .. code-block:: http
 
-    HTTP/1.1 200 OK
-    Cache-Control: must-revalidate
-    Content-Type: application/json
-    Date: Wed, 21 Aug 2013 09:14:13 GMT
-    ETag: "6R5NM8E872JIJF796VF7WI3FZ"
-    Server: CouchDB (Erlang/OTP)
-    Transfer-Encoding: chunked
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate
+        Content-Type: application/json
+        Date: Wed, 21 Aug 2013 09:14:13 GMT
+        ETag: "6R5NM8E872JIJF796VF7WI3FZ"
+        Server: CouchDB (Erlang/OTP)
+        Transfer-Encoding: chunked
 
-    {
-        "offset": 0,
-        "rows": [
+        {
+          "offset": 0,
+          "rows": [
             {
-                "id": "SpaghettiWithMeatballs",
-                "key": "meatballs",
-                "value": 1
+              "id": "SpaghettiWithMeatballs",
+              "key": "meatballs",
+              "value": 1
             },
             {
-                "id": "SpaghettiWithMeatballs",
-                "key": "spaghetti",
-                "value": 1
+              "id": "SpaghettiWithMeatballs",
+              "key": "spaghetti",
+              "value": 1
             }
-        ],
-        "total_rows": 3
-    }
+          ],
+          "total_rows": 3
+        }
 
 
 .. _api/ddoc/view/options:
@@ -235,9 +234,7 @@ before the view query is executed against the database.
 View indexes are updated incrementally in the following situations:
 
 -  A new document has been added to the database.
-
 -  A document has been deleted from the database.
-
 -  A document in the database has been updated.
 
 View indexes are rebuilt entirely when the view definition changes. To
@@ -247,11 +244,11 @@ indexes are entirely rebuilt. This ensures that changes to the view
 definitions are reflected in the view indexes.
 
 .. note::
-   View index rebuilds occur when one view from the same the view group
-   (i.e. all the views defined within a single a design document) has
-   been determined as needing a rebuild. For example, if if you have a
-   design document with different views, and you update the database,
-   all three view indexes within the design document will be updated.
+    View index rebuilds occur when one view from the same the view group
+    (i.e. all the views defined within a single a design document) has
+    been determined as needing a rebuild. For example, if if you have a
+    design document with different views, and you update the database,
+    all three view indexes within the design document will be updated.
 
 Because the view is updated when it has been queried, it can result in a
 delay in returned information when the view is accessed, especially if
@@ -326,142 +323,136 @@ sorting according to the contents of the key portion of the emitted
 content. The basic order of output is as follows:
 
 -  ``null``
-
 -  ``false``
-
 -  ``true``
-
 -  Numbers
-
 -  Text (case sensitive, lowercase first)
-
 -  Arrays (according to the values of each element, in order)
-
 -  Objects (according to the values of keys, in key order)
 
 **Request**:
 
 .. code-block:: http
 
-  GET /db/_design/test/_view/sorting HTTP/1.1
-  Accept: application/json
-  Host: localhost:5984
+    GET /db/_design/test/_view/sorting HTTP/1.1
+    Accept: application/json
+    Host: localhost:5984
 
 
 **Response**:
 
 .. code-block:: http
 
-  HTTP/1.1 200 OK
-  Cache-Control: must-revalidate
-  Content-Type: application/json
-  Date: Wed, 21 Aug 2013 10:09:25 GMT
-  ETag: "8LA1LZPQ37B6R9U8BK9BGQH27"
-  Server: CouchDB (Erlang/OTP)
-  Transfer-Encoding: chunked
+    HTTP/1.1 200 OK
+    Cache-Control: must-revalidate
+    Content-Type: application/json
+    Date: Wed, 21 Aug 2013 10:09:25 GMT
+    ETag: "8LA1LZPQ37B6R9U8BK9BGQH27"
+    Server: CouchDB (Erlang/OTP)
+    Transfer-Encoding: chunked
 
-  {
+    {
       "offset": 0,
       "rows": [
-          {
-              "id": "dummy-doc",
-              "key": null,
-              "value": null
+        {
+          "id": "dummy-doc",
+          "key": null,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": false,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": true,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 0,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 1,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 10,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 42,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "10",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "hello",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "Hello",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "\u043f\u0440\u0438\u0432\u0435\u0442",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [
+            1,
+            2,
+            3
+          ],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [
+            2,
+            3
+          ],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [
+            3
+          ],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": {},
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": {
+            "foo": "bar"
           },
-          {
-              "id": "dummy-doc",
-              "key": false,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": true,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 0,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 1,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 10,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 42,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "10",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "hello",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "Hello",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "\u043f\u0440\u0438\u0432\u0435\u0442",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [
-                  1,
-                  2,
-                  3
-              ],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [
-                  2,
-                  3
-              ],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [
-                  3
-              ],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": {},
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": {
-                  "foo": "bar"
-              },
-              "value": null
-          }
+          "value": null
+        }
       ],
       "total_rows": 17
-  }
+    }
 
 
 You can reverse the order of the returned view information by using the
@@ -471,125 +462,125 @@ You can reverse the order of the returned view information by using the
 
 .. code-block:: http
 
-  GET /db/_design/test/_view/sorting?descending=true HTTP/1.1
-  Accept: application/json
-  Host: localhost:5984
+    GET /db/_design/test/_view/sorting?descending=true HTTP/1.1
+    Accept: application/json
+    Host: localhost:5984
 
 
 **Response**:
 
 .. code-block:: http
 
-  HTTP/1.1 200 OK
-  Cache-Control: must-revalidate
-  Content-Type: application/json
-  Date: Wed, 21 Aug 2013 10:09:25 GMT
-  ETag: "Z4N468R15JBT98OM0AMNSR8U"
-  Server: CouchDB (Erlang/OTP)
-  Transfer-Encoding: chunked
+    HTTP/1.1 200 OK
+    Cache-Control: must-revalidate
+    Content-Type: application/json
+    Date: Wed, 21 Aug 2013 10:09:25 GMT
+    ETag: "Z4N468R15JBT98OM0AMNSR8U"
+    Server: CouchDB (Erlang/OTP)
+    Transfer-Encoding: chunked
 
-  {
+    {
       "offset": 0,
       "rows": [
-          {
-              "id": "dummy-doc",
-              "key": {
-                  "foo": "bar"
-              },
-              "value": null
+        {
+          "id": "dummy-doc",
+          "key": {
+            "foo": "bar"
           },
-          {
-              "id": "dummy-doc",
-              "key": {},
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [
-                  3
-              ],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [
-                  2,
-                  3
-              ],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [
-                  1,
-                  2,
-                  3
-              ],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": [],
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "\u043f\u0440\u0438\u0432\u0435\u0442",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "Hello",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "hello",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": "10",
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 42,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 10,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 1,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": 0,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": true,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": false,
-              "value": null
-          },
-          {
-              "id": "dummy-doc",
-              "key": null,
-              "value": null
-          }
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": {},
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [
+            3
+          ],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [
+            2,
+            3
+          ],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [
+            1,
+            2,
+            3
+          ],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": [],
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "\u043f\u0440\u0438\u0432\u0435\u0442",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "Hello",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "hello",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": "10",
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 42,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 10,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 1,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": 0,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": true,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": false,
+          "value": null
+        },
+        {
+          "id": "dummy-doc",
+          "key": null,
+          "value": null
+        }
       ],
       "total_rows": 17
-  }
+    }
 
 
 Sorting order and startkey/endkey
@@ -610,16 +601,15 @@ will operate correctly when listing all the matching entries between
 
 .. code-block:: http
 
+    GET /recipes/_design/recipes/_view/by_ingredient?descending=true&startkey=%22carrots%22&endkey=%22egg%22 HTTP/1.1
+    Accept: application/json
+    Host: localhost:5984
 
-  GET /recipes/_design/recipes/_view/by_ingredient?descending=true&startkey=%22carrots%22&endkey=%22egg%22 HTTP/1.1
-  Accept: application/json
-  Host: localhost:5984
-
-  {
-     "total_rows" : 26453,
-     "rows" : [],
-     "offset" : 21882
-  }
+    {
+      "total_rows" : 26453,
+      "rows" : [],
+      "offset" : 21882
+    }
 
 The results will be empty because the entries in the view are reversed
 before the key filter is applied, and therefore the ``endkey`` of “egg”
@@ -632,9 +622,9 @@ keys. Changing the previous example to:
 
 .. code-block:: http
 
-  GET /recipes/_design/recipes/_view/by_ingredient?descending=true&startkey=%22egg%22&endkey=%22carrots%22 HTTP/1.1
-  Accept: application/json
-  Host: localhost:5984
+    GET /recipes/_design/recipes/_view/by_ingredient?descending=true&startkey=%22egg%22&endkey=%22carrots%22 HTTP/1.1
+    Accept: application/json
+    Host: localhost:5984
 
 
 .. _api/ddoc/view/sorting/raw:
@@ -651,8 +641,7 @@ documents ``options`` object at the root level. After that, views will be
 regenerated and new order applied.
 
 .. seealso::
-
-   :ref:`views/collation`
+        :ref:`views/collation`
 
 .. _ICU: http://site.icu-project.org/
 
@@ -674,68 +663,68 @@ in view:
 
 .. code-block:: http
 
-  GET /recipes/_design/recipes/_view/by_title?limit=5 HTTP/1.1
-  Accept: application/json
-  Host: localhost:5984
+    GET /recipes/_design/recipes/_view/by_title?limit=5 HTTP/1.1
+    Accept: application/json
+    Host: localhost:5984
 
 **Response**:
 
 .. code-block:: http
 
-  HTTP/1.1 200 OK
-  Cache-Control: must-revalidate
-  Content-Type: application/json
-  Date: Wed, 21 Aug 2013 09:14:13 GMT
-  ETag: "9Q6Q2GZKPH8D5F8L7PB6DBSS9"
-  Server: CouchDB (Erlang/OTP)
-  Transfer-Encoding: chunked
+    HTTP/1.1 200 OK
+    Cache-Control: must-revalidate
+    Content-Type: application/json
+    Date: Wed, 21 Aug 2013 09:14:13 GMT
+    ETag: "9Q6Q2GZKPH8D5F8L7PB6DBSS9"
+    Server: CouchDB (Erlang/OTP)
+    Transfer-Encoding: chunked
 
-  {
-     "offset" : 0,
-     "rows" : [
+    {
+      "offset" : 0,
+      "rows" : [
         {
-           "id" : "3-tiersalmonspinachandavocadoterrine",
-           "key" : "3-tier salmon, spinach and avocado terrine",
-           "value" : [
-              null,
-              "3-tier salmon, spinach and avocado terrine"
-           ]
+         "id" : "3-tiersalmonspinachandavocadoterrine",
+         "key" : "3-tier salmon, spinach and avocado terrine",
+         "value" : [
+            null,
+            "3-tier salmon, spinach and avocado terrine"
+          ]
         },
         {
-           "id" : "Aberffrawcake",
-           "key" : "Aberffraw cake",
-           "value" : [
-              null,
-              "Aberffraw cake"
-           ]
+         "id" : "Aberffrawcake",
+         "key" : "Aberffraw cake",
+         "value" : [
+            null,
+            "Aberffraw cake"
+          ]
         },
         {
-           "id" : "Adukiandorangecasserole-microwave",
-           "key" : "Aduki and orange casserole - microwave",
-           "value" : [
-              null,
-              "Aduki and orange casserole - microwave"
-           ]
+         "id" : "Adukiandorangecasserole-microwave",
+         "key" : "Aduki and orange casserole - microwave",
+         "value" : [
+            null,
+            "Aduki and orange casserole - microwave"
+          ]
         },
         {
-           "id" : "Aioli-garlicmayonnaise",
-           "key" : "Aioli - garlic mayonnaise",
-           "value" : [
-              null,
-              "Aioli - garlic mayonnaise"
-           ]
+         "id" : "Aioli-garlicmayonnaise",
+         "key" : "Aioli - garlic mayonnaise",
+         "value" : [
+            null,
+            "Aioli - garlic mayonnaise"
+          ]
         },
         {
-           "id" : "Alabamapeanutchicken",
-           "key" : "Alabama peanut chicken",
-           "value" : [
-              null,
-              "Alabama peanut chicken"
-           ]
+         "id" : "Alabamapeanutchicken",
+         "key" : "Alabama peanut chicken",
+         "value" : [
+            null,
+            "Alabama peanut chicken"
+          ]
         }
-     ],
-     "total_rows" : 2667
-  }
+      ],
+      "total_rows" : 2667
+    }
 
 To omit some records you may use ``skip`` query parameter:
 
@@ -743,55 +732,54 @@ To omit some records you may use ``skip`` query parameter:
 
 .. code-block:: http
 
-  GET /recipes/_design/recipes/_view/by_title?limit=3&skip=2 HTTP/1.1
-  Accept: application/json
-  Host: localhost:5984
+    GET /recipes/_design/recipes/_view/by_title?limit=3&skip=2 HTTP/1.1
+    Accept: application/json
+    Host: localhost:5984
 
 **Response**:
 
 .. code-block:: http
 
-  HTTP/1.1 200 OK
-  Cache-Control: must-revalidate
-  Content-Type: application/json
-  Date: Wed, 21 Aug 2013 09:14:13 GMT
-  ETag: "H3G7YZSNIVRRHO5FXPE16NJHN"
-  Server: CouchDB (Erlang/OTP)
-  Transfer-Encoding: chunked
+    HTTP/1.1 200 OK
+    Cache-Control: must-revalidate
+    Content-Type: application/json
+    Date: Wed, 21 Aug 2013 09:14:13 GMT
+    ETag: "H3G7YZSNIVRRHO5FXPE16NJHN"
+    Server: CouchDB (Erlang/OTP)
+    Transfer-Encoding: chunked
 
-  {
-     "offset" : 2,
-     "rows" : [
+    {
+      "offset" : 2,
+      "rows" : [
         {
-           "id" : "Adukiandorangecasserole-microwave",
-           "key" : "Aduki and orange casserole - microwave",
-           "value" : [
-              null,
-              "Aduki and orange casserole - microwave"
-           ]
+          "id" : "Adukiandorangecasserole-microwave",
+          "key" : "Aduki and orange casserole - microwave",
+          "value" : [
+            null,
+            "Aduki and orange casserole - microwave"
+          ]
         },
         {
-           "id" : "Aioli-garlicmayonnaise",
-           "key" : "Aioli - garlic mayonnaise",
-           "value" : [
-              null,
-              "Aioli - garlic mayonnaise"
-           ]
+          "id" : "Aioli-garlicmayonnaise",
+          "key" : "Aioli - garlic mayonnaise",
+          "value" : [
+            null,
+            "Aioli - garlic mayonnaise"
+          ]
         },
         {
-           "id" : "Alabamapeanutchicken",
-           "key" : "Alabama peanut chicken",
-           "value" : [
-              null,
-              "Alabama peanut chicken"
-           ]
+          "id" : "Alabamapeanutchicken",
+          "key" : "Alabama peanut chicken",
+          "value" : [
+            null,
+            "Alabama peanut chicken"
+          ]
         }
-     ],
-     "total_rows" : 2667
-  }
+      ],
+      "total_rows" : 2667
+    }
 
 .. warning::
-
-   Using ``limit`` and ``skip`` parameters is not recommended for results
-   pagination. Read :ref:`pagination recipe <views/pagination>` why it's so
-   and how to make it better.
+    Using ``limit`` and ``skip`` parameters is not recommended for results
+    pagination. Read :ref:`pagination recipe <views/pagination>` why it's so
+    and how to make it better.
