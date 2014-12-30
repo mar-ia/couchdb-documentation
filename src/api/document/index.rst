@@ -10,7 +10,6 @@
 .. License for the specific language governing permissions and limitations under
 .. the License.
 
-
 .. _api/document:
 
 =========
@@ -21,5 +20,5 @@ Details on how to create, read, update and delete documents within a database.
 
 .. toctree::
 
-   common
-   attachments
+    common
+    attachments
