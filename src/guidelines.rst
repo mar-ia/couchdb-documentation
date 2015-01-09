@@ -29,6 +29,10 @@ The rules are in descending priority.
 
    * One empty line after license.
    * No empty line at the end of the file.
+   * 2 empty lines before a title or subtitle. Anchors are a part of the title.
+   * Lists with multiple lines on each item are separated by an empty line.
+   * No empty line after ``note``, ``warning``, ``seealso``, etc.
+   * Empty lines do not stack.
 
 #. Line ending
 
@@ -59,5 +63,3 @@ The rules are in descending priority.
    * Titles are under and overlined with =
    * Subtitles are underlined with =
    * The amount of = should match tile length.
-   * No empty line after ``note``, ``warning``, ``seealso``, etc.
-   * Lists with multiple lines on each item are separated by an empty line.
