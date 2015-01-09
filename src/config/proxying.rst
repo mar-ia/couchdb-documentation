@@ -33,25 +33,23 @@ Configuration of the proxy redirect is handled through the
 ``[httpd_global_handlers]`` section of the CouchDB configuration file
 (typically ``local.ini``). The format is::
 
-  [httpd_global_handlers]
-  PREFIX = {couch_httpd_proxy, handle_proxy_req, <<"DESTINATION">>}
-
+    [httpd_global_handlers]
+    PREFIX = {couch_httpd_proxy, handle_proxy_req, <<"DESTINATION">>}
 
 Where:
 
 -  ``PREFIX``
 
-   Is the string that will be matched. The string can be any valid
-   qualifier, although to ensure that existing database names are not
-   overridden by a proxy configuration, you can use an underscore
-   prefix.
+  Is the string that will be matched. The string can be any valid
+  qualifier, although to ensure that existing database names are not
+  overridden by a proxy configuration, you can use an underscore prefix.
 
 -  ``DESTINATION``
 
-   The fully-qualified URL to which the request should be sent. The
-   destination must include the ``http`` prefix. The content is used
-   verbatim in the original request, so you can also forward to servers
-   on different ports and to specific paths on the target host.
+  The fully-qualified URL to which the request should be sent. The
+  destination must include the ``http`` prefix. The content is used
+  verbatim in the original request, so you can also forward to servers
+  on different ports and to specific paths on the target host.
 
 The proxy process then translates requests of the form:
 
@@ -66,15 +64,15 @@ To:
     DESTINATION/path
 
 .. note::
-   Everything after ``PREFIX`` including the required forward slash
-   will be appended to the ``DESTINATION``.
+    Everything after ``PREFIX`` including the required forward slash
+    will be appended to the ``DESTINATION``.
 
 The response is then communicated back to the original client.
 
 For example, the following configuration::
 
-  [httpd_global_handlers]
-  _google = {couch_httpd_proxy, handle_proxy_req, <<"http://www.google.com">>}
+    [httpd_global_handlers]
+    _google = {couch_httpd_proxy, handle_proxy_req, <<"http://www.google.com">>}
 
 Would forward all requests for ``http://couchdb:5984/_google`` to the
 Google website.
@@ -82,17 +80,17 @@ Google website.
 The service can also be used to forward to related CouchDB services,
 such as `Lucene`::
 
-  [httpd_global_handlers]
-  _fti = {couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:5985">>}
+    [httpd_global_handlers]
+    _fti = {couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:5985">>}
 
 .. note::
-   The proxy service is basic. If the request is not identified by the
-   ``DESTINATION``, or the remainder of the ``PATH`` specification is
-   incomplete, the original request URL is interpreted as if the
-   ``PREFIX`` component of that URL does not exist.
+    The proxy service is basic. If the request is not identified by the
+    ``DESTINATION``, or the remainder of the ``PATH`` specification is
+    incomplete, the original request URL is interpreted as if the
+    ``PREFIX`` component of that URL does not exist.
 
-   For example, requesting ``http://couchdb:5984/_intranet/media`` when
-   ``/media`` on the proxy destination does not exist, will cause the
-   request URL to be interpreted as ``http://couchdb:5984/media``. Care
-   should be taken to ensure that both requested URLs and destination
-   URLs are able to cope.
+    For example, requesting ``http://couchdb:5984/_intranet/media`` when
+    ``/media`` on the proxy destination does not exist, will cause the
+    request URL to be interpreted as ``http://couchdb:5984/media``. Care
+    should be taken to ensure that both requested URLs and destination
+    URLs are able to cope.
