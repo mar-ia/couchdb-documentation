@@ -62,4 +62,7 @@ The rules are in descending priority.
 
    * Titles are under and overlined with =
    * Subtitles are underlined with =
-   * The amount of = should match tile length.
+   * Subsubtiles are underlined with -
+   * Subsubsubtiles are underlined with +
+   * Subsubsubsubtiles are underlined with ^
+   * The amount of = and - should match tile length.
