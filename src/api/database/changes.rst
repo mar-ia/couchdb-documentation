@@ -17,7 +17,7 @@
 ================
 
 .. http:get:: /{db}/_changes
-    :synopsis: Returns changes for the given database
+   :synopsis: Returns changes for the given database
 
     Returns a sorted list of changes made to documents in the database, in time
     order of application, can be obtained from the database's ``_changes``
@@ -179,7 +179,7 @@
 
 
 .. http:post:: /{db}/_changes
-    :synopsis: Returns changes for the given database for certain document IDs
+   :synopsis: Returns changes for the given database for certain document IDs
 
     Requests the database changes feed in the same way as
     :get:`/{db}/_changes` does, but is widely used with

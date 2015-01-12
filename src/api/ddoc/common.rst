@@ -16,7 +16,7 @@
 ==========================
 
 .. http:head:: /{db}/_design/{ddoc}
-    :synopsis: Returns bare information in the HTTP Headers for the design document
+   :synopsis: Returns bare information in the HTTP Headers for the design document
 
     Returns the HTTP Headers containing a minimal amount of information
     about the specified design document.
@@ -26,7 +26,7 @@
 
 
 .. http:get:: /{db}/_design/{ddoc}
-    :synopsis: Returns the design document
+   :synopsis: Returns the design document
 
     Returns the contents of the design document specified with the name of the design
     document and from the specified database from the URL. Unless you request a specific
@@ -37,7 +37,7 @@
 
 
 .. http:put:: /{db}/_design/{ddoc}
-    :synopsis: Creates a new design document or new version of an existing one
+   :synopsis: Creates a new design document or new version of an existing one
 
     The :method:`PUT` method creates a new named design document, or creates
     a new revision of the existing design document.
@@ -67,7 +67,7 @@
 
 
 .. http:delete:: /{db}/_design/{ddoc}
-    :synopsis: Deletes the design document
+   :synopsis: Deletes the design document
 
     Deletes the specified document from the database. You must supply the
     current (latest) revision, either by using the ``rev`` parameter to
@@ -77,7 +77,7 @@
         :delete:`/{db}/{docid}`
 
 .. http:copy:: /{db}/_design/{ddoc}
-    :synopsis: Copies the design document
+   :synopsis: Copies the design document
 
     The :method:`COPY` (which is non-standard HTTP) copies an existing
     design document to a new or existing one.
@@ -97,7 +97,7 @@
 =====================================
 
 .. http:head:: /{db}/_design/{ddoc}/{attname}
-    :synopsis: Returns bare information in the HTTP Headers for the attachment
+   :synopsis: Returns bare information in the HTTP Headers for the attachment
 
     Returns the HTTP headers containing a minimal amount of information
     about the specified attachment.
@@ -106,7 +106,7 @@
         :head:`/{db}/{docid}/{attname}`
 
 .. http:get:: /{db}/_design/{ddoc}/{attname}
-      :synopsis: Gets the attachment of a design document
+   :synopsis: Gets the attachment of a design document
 
     Returns the file attachment associated with the design document.
     The raw data of the associated attachment is returned (just as if you were
@@ -117,7 +117,7 @@
         :get:`/{db}/{docid}/{attname}`
 
 .. http:put:: /{db}/_design/{ddoc}/{attname}
-    :synopsis: Adds an attachment of a design document
+   :synopsis: Adds an attachment of a design document
 
     Uploads the supplied content as an attachment to the specified design
     document. The attachment name provided must be a URL encoded string.
@@ -126,7 +126,7 @@
         :put:`/{db}/{docid}/{attname}`
 
 .. http:delete:: /{db}/_design/{ddoc}/{attname}
-    :synopsis: Deletes an attachment of a design document
+   :synopsis: Deletes an attachment of a design document
 
     Deletes the attachment of the specified design document.
 
@@ -140,7 +140,7 @@
 ================================
 
 .. http:get:: /{db}/_design/{ddoc}/_info
-    :synopsis: Returns view index information for the specified design document
+   :synopsis: Returns view index information for the specified design document
 
     Obtains information about the specified design document, including the index,
     index size and current status of the design document and associated

@@ -517,7 +517,7 @@ Cross-Origin Resource Sharing
 
 
 Per Virtual Host Configuration
-==============================
+------------------------------
 
 To set the options for a :section:`vhosts`, you will need to create a section
 with the vhost name prefixed by ``cors:``. Example case for the vhost
@@ -531,7 +531,6 @@ with the vhost name prefixed by ``cors:``. Example case for the vhost
     headers = X-CouchDB-Header
     ; List of accepted methods
     methods = HEAD, GET
-
 
 
 .. _config/vhosts:
@@ -586,7 +585,7 @@ Virtual Hosts
 
 
 Rewriting Hosts to a Path
-=========================
+-------------------------
 
 Like in the :ref:`_rewrite <api/ddoc/rewrite>` handler you can match some
 variable and use them to create the target path. Some examples::

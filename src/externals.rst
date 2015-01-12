@@ -37,8 +37,9 @@ that wanted to see the _externals API modified in slight ways that weren't
 mutually compatible. After having multiple discussions with multiple people
 we formed a general consensus on what a new API could look like.
 
+
 The New Hotness
----------------
+===============
 
 So the first idea for improving the _external API was to make CouchDB act as
 a reverse proxy. This would allow people to write an HTTP server that was as
@@ -66,8 +67,9 @@ proxy, and server all hosted in the same process. So that's what I did. It
 turns out to be a fairly nice way of configuring matching assertions between
 the client and the server to test the proxy transmissions.
 
+
 How does it work? - HTTP Proxying
----------------------------------
+=================================
 
 To configure a :ref:`proxy handler <config/proxy>`, edit your `local.ini` and
 add a section like such::
@@ -89,8 +91,9 @@ Also, of note is that there's nothing that limits on what resources can be
 proxied. You're free to choose any destination that the CouchDB node is capable
 of communicating with.
 
+
 How does it work? - OS Daemons
-------------------------------
+==============================
 
 The second part of the new API gives CouchDB simple OS process management. When
 CouchDB boots it will start each configured OS daemon. If one of these daemons
@@ -108,8 +111,9 @@ To configure an :config:section:`OS daemon <os_daemons>`, add this to your
     [os_daemons]
     my_daemon = /path/to/command -with args
 
+
 Configuration API
-+++++++++++++++++
+-----------------
 
 As an added benefit, because stdio is now free, I implemented a simple API
 that OS daemons can use to read the configuration of their CouchDB host. This
@@ -136,8 +140,9 @@ And the response::
 
 All requests and responses are terminated with a newline (indicated by ``\n``).
 
+
 Logging API
-+++++++++++
+-----------
 
 There's also an API for adding messages to CouchDB's logs. Its simply::
 
@@ -146,15 +151,17 @@ There's also an API for adding messages to CouchDB's logs. Its simply::
 Where ``$MESG`` is any arbitrary JSON. There is no response from this command.
 As with the config API, the trailing ``\n`` represents a newline byte.
 
+
 Dynamic Daemons
-+++++++++++++++
+---------------
 
 The OS daemons react in real time to changes to the configuration system. If
 you set or delete keys in the :config:section:`os_daemons` section,
 the corresponding daemons will be started or killed as appropriate.
 
+
 Neat. But So What?
-------------------
+==================
 
 It was suggested that a good first demo would be a `Node.js`_ handler. So, I
 present to you a "Hello, World" Node.js handler. Also, remember that this

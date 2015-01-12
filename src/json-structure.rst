@@ -19,6 +19,7 @@ JSON Structure Reference
 The following appendix provides a quick reference to all the JSON structures
 that you can supply to CouchDB, or get in return to requests.
 
+
 All Database Documents
 ======================
 
@@ -34,6 +35,7 @@ All Database Documents
 | rows [array]                   | Array of document object                    |
 +--------------------------------+---------------------------------------------+
 
+
 Bulk Document Response
 ======================
 
@@ -48,6 +50,7 @@ Bulk Document Response
 +--------------------------------+---------------------------------------------+
 |         reason                 | Error string with extended reason           |
 +--------------------------------+---------------------------------------------+
+
 
 Bulk Documents
 ==============
@@ -68,6 +71,7 @@ Bulk Documents
 |         _deleted (optional)    | Whether the document should be deleted      |
 +--------------------------------+---------------------------------------------+
 
+
 Changes information for a database
 ==================================
 
@@ -86,6 +90,7 @@ Changes information for a database
 |                                | document                                    |
 +--------------------------------+---------------------------------------------+
 
+
 CouchDB Document
 ================
 
@@ -97,6 +102,7 @@ CouchDB Document
 | _rev (optional)                | Revision ID (when updating an existing      |
 |                                | document)                                   |
 +--------------------------------+---------------------------------------------+
+
 
 CouchDB Error Status
 ====================
@@ -110,6 +116,7 @@ CouchDB Error Status
 +--------------------------------+---------------------------------------------+
 | reason                         | Error string with extended reason           |
 +--------------------------------+---------------------------------------------+
+
 
 .. _dbinfo_object:
 
@@ -148,6 +155,7 @@ CouchDB database information object
 |                                | database.                                   |
 +--------------------------------+---------------------------------------------+
 
+
 Design Document
 ===============
 
@@ -166,6 +174,7 @@ Design Document
 +--------------------------------+---------------------------------------------+
 |         reduce (optional)      | Reduce Function for View                    |
 +--------------------------------+---------------------------------------------+
+
 
 Design Document Information
 ===========================
@@ -203,6 +212,7 @@ Design Document Information
 |                                | processed                                   |
 +--------------------------------+---------------------------------------------+
 
+
 Document with Attachments
 =========================
 
@@ -223,6 +233,7 @@ Document with Attachments
 |         data                   | File attachment content, Base64 encoded     |
 +--------------------------------+---------------------------------------------+
 
+
 List of Active Tasks
 ====================
 
@@ -239,6 +250,7 @@ List of Active Tasks
 +--------------------------------+---------------------------------------------+
 |     type                       | Operation Type                              |
 +--------------------------------+---------------------------------------------+
+
 
 .. _replication-settings:
 
@@ -279,6 +291,7 @@ Replication Settings
 | checkpoint_interval (optional) | Specifies the checkpoint interval in ms.    |
 +--------------------------------+---------------------------------------------+
 
+
 .. _replication-status:
 
 Replication Status
@@ -318,6 +331,7 @@ Replication Status
 +--------------------------------+---------------------------------------------+
 |     missing_found              | Number of missing documents found           |
 +--------------------------------+---------------------------------------------+
+
 
 .. _request_object:
 
@@ -483,15 +497,15 @@ Response object
 +--------------------------------+---------------------------------------------+
 
 .. warning::
-   The ``body``, ``base64`` and ``json`` object keys are overlapping each other
-   where the last one wins. Since most realizations of key-value objects do
-   not preserve the key order or if they are mixed, confusing situations can
-   occure. Try to use only one of them.
+    The ``body``, ``base64`` and ``json`` object keys are overlapping each other
+    where the last one wins. Since most realizations of key-value objects do
+    not preserve the key order or if they are mixed, confusing situations can
+    occure. Try to use only one of them.
 
 .. note::
-   Any custom property makes CouchDB raise an internal exception.
-   Furthermore, the `Response object` could be a simple string value which would
-   be implicitly wrapped into a ``{"body": ...}`` object.
+    Any custom property makes CouchDB raise an internal exception.
+    Furthermore, the `Response object` could be a simple string value which would
+    be implicitly wrapped into a ``{"body": ...}`` object.
 
 
 Returned CouchDB Document with Detailed Revision Info
@@ -512,6 +526,7 @@ Returned CouchDB Document with Detailed Revision Info
 |         status                 | Status of the revision                      |
 +--------------------------------+---------------------------------------------+
 
+
 Returned CouchDB Document with Revision Info
 ============================================
 
@@ -530,6 +545,7 @@ Returned CouchDB Document with Revision Info
 +--------------------------------+---------------------------------------------+
 |     start                      | Prefix number for the latest revision       |
 +--------------------------------+---------------------------------------------+
+
 
 Returned Document with Attachments
 ==================================
@@ -554,6 +570,7 @@ Returned Document with Attachments
 +--------------------------------+---------------------------------------------+
 |         revpos                 | Revision where this attachment exists       |
 +--------------------------------+---------------------------------------------+
+
 
 .. _security_object:
 

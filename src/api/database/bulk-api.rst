@@ -16,7 +16,7 @@
 =================
 
 .. http:get:: /{db}/_all_docs
-    :synopsis: Returns a built-in view of all documents in this database
+   :synopsis: Returns a built-in view of all documents in this database
 
     Returns a JSON structure of all of the documents in a given database.
     The information is returned as a JSON structure containing meta
@@ -134,7 +134,7 @@
 
 
 .. http:post:: /{db}/_all_docs
-    :synopsis: Returns certain rows from the built-in view of all documents
+   :synopsis: Returns certain rows from the built-in view of all documents
 
     The ``POST`` to ``_all_docs`` allows to specify multiple keys to be
     selected from the database. This enables you to request multiple
@@ -192,7 +192,7 @@
 ==================
 
 .. http:post:: /{db}/_bulk_docs
-    :synopsis: Inserts or updates multiple documents in to the database in a single request
+   :synopsis: Inserts or updates multiple documents in to the database in a single request
 
     The bulk document API allows you to create and update multiple documents
     at the same time within a single request. The basic operation is similar

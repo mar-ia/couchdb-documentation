@@ -16,7 +16,7 @@
 ===========
 
 .. http:head:: /{db}/{docid}
-    :synopsis: Returns bare information in the HTTP Headers for the document
+   :synopsis: Returns bare information in the HTTP Headers for the document
 
     Returns the HTTP Headers containing a minimal amount of information
     about the specified document. The method supports the same query
@@ -61,9 +61,8 @@
         ETag: "12-151bb8678d45aaa949ec3698ef1c7e78"
         Server: CouchDB (Erlang/OTP)
 
-
 .. http:get:: /{db}/{docid}
-    :synopsis: Returns the document
+   :synopsis: Returns the document
 
     Returns document by the specified ``docid`` from the specified ``db``.
     Unless you request a specific revision, the latest revision of the
@@ -166,7 +165,7 @@
         }
 
 .. http:put:: /{db}/{docid}
-    :synopsis: Creates a new document or new version of an existing document
+   :synopsis: Creates a new document or new version of an existing document
 
     The :method:`PUT` method creates a new named document, or creates a new
     revision of the existing document. Unlike the :post:`/{db}`, you
@@ -238,7 +237,7 @@
         }
 
 .. http:delete:: /{db}/{docid}
-    :synopsis: Deletes the document
+   :synopsis: Deletes the document
 
     Marks the specified document as deleted by adding a field ``_deleted`` with
     the value ``true``. Documents with this field will not be returned within
@@ -314,9 +313,8 @@
           "rev": "2-056f5f44046ecafc08a2bc2b9c229e20"
         }
 
-
 .. http:copy:: /{db}/{docid}
-    :synopsis: Copies the document within the same database
+   :synopsis: Copies the document within the same database
 
     The :method:`COPY` (which is non-standard HTTP) copies an existing
     document to a new or existing document.
@@ -385,7 +383,7 @@
 .. _api/doc/attachments:
 
 Attachments
-===========
+-----------
 
 If the document includes attachments, then the returned structure will
 contain a summary of the attachments associated with the document, but
@@ -435,7 +433,7 @@ information objects with next structure:
 
 
 Basic Attachments Info
-======================
+++++++++++++++++++++++
 
 **Request**:
 
@@ -492,10 +490,11 @@ Basic Attachments Info
       "name": "Spaghetti with meatballs"
     }
 
+
 .. _api/doc/retrieving-deleted-documents:
 
 Retrieving Attachments Content
-==============================
+++++++++++++++++++++++++++++++
 
 It's possible to retrieve document with all attached files content by using
 ``attachements=true`` query parameter:
@@ -598,7 +597,7 @@ query parameter:
 
 
 Efficient Multiple Attachments Retrieving
-=========================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As you had noted above, retrieving document with ``attachements=true`` returns
 large JSON object where all attachments are included.  While you document and
@@ -651,7 +650,7 @@ goes as raw data, not in base64 encoding, right?).
 
 
 Retrieving Attachments Encoding Info
-====================================
+++++++++++++++++++++++++++++++++++++
 
 By using ``att_encoding_info=true`` query parameter you may retrieve information
 about compressed attachments size and used codec.
@@ -717,7 +716,7 @@ about compressed attachments size and used codec.
 
 
 Creating Multiple Attachments
-=============================
++++++++++++++++++++++++++++++
 
 To create a document with multiple attachments with single request you need
 just inline base64 encoded attachments data into the document body:
@@ -814,7 +813,7 @@ The subsequent MIME bodies are the attachments.
 
 
 Getting a List of Revisions
-===========================
+---------------------------
 
 You can obtain a list of the revisions for a given document by adding
 the ``revs=true`` parameter to the request URL:
@@ -874,7 +873,7 @@ The returned JSON structure includes the original document, including a
 
 
 Obtaining an Extended Revision History
-======================================
+--------------------------------------
 
 You can get additional information about the revisions for a given
 document by supplying the ``revs_info`` argument to the query:
@@ -944,7 +943,6 @@ document by supplying the ``revs_info`` argument to the query:
       "name": "Spaghetti with meatballs"
     }
 
-
 The returned document contains ``_revs_info`` field with extended revision
 information, including the availability and status of each revision. This array
 field contains objects with following structure:
@@ -960,7 +958,7 @@ field contains objects with following structure:
 
 
 Obtaining a Specific Revision
-=============================
+-----------------------------
 
 To get a specific revision, use the ``rev`` argument to the request, and
 specify the full revision number. The specified revision of the document will
@@ -1000,7 +998,7 @@ requested.
 
 
 Retrieving Deleted Documents
-============================
+++++++++++++++++++++++++++++
 
 CouchDB doesn't actually deletes documents via :delete:`/{db}/{docid}`.
 Instead of this, it leaves tombstone with very basic information about document.
@@ -1062,7 +1060,7 @@ with :get:`/{db}/{docid}` request:
 
 
 Updating an Existing Document
-=============================
+-----------------------------
 
 To update an existing document you must specify the current revision
 number within the ``_rev`` parameter.
@@ -1112,7 +1110,6 @@ Alternatively, you can supply the current revision number in the
       "serving": "hot"
     }
 
-
 **Response**:
 
 .. code-block:: http
@@ -1134,7 +1131,7 @@ Alternatively, you can supply the current revision number in the
 
 
 Copying from a Specific Revision
-================================
+--------------------------------
 
 To copy *from* a specific version, use the ``rev`` argument to the query
 string or :header:`If-Match`:
@@ -1170,7 +1167,7 @@ string or :header:`If-Match`:
 
 
 Copying to an Existing Document
-===============================
+-------------------------------
 
 To copy to an existing document, you must specify the current revision
 string for the target document by appending the ``rev`` parameter to the

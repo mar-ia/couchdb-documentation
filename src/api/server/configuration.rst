@@ -23,7 +23,7 @@ the various configuration values within a running CouchDB instance.
 ============
 
 .. http:get:: /_config
-    :synopsis: Obtains a list of the entire server configuration
+   :synopsis: Obtains a list of the entire server configuration
 
     Returns the entire CouchDB server configuration as a JSON structure. The
     structure is organized by different configuration sections, with
@@ -160,7 +160,7 @@ the various configuration values within a running CouchDB instance.
 ====================
 
 .. http:get:: /_config/{section}
-    :synopsis: Returns all the configuration values for the specified section
+   :synopsis: Returns all the configuration values for the specified section
 
     Gets the configuration structure for a single section.
 
@@ -210,7 +210,7 @@ the various configuration values within a running CouchDB instance.
 ========================
 
 .. http:get:: /_config/{section}/{key}
-    :synopsis: Returns a specific section/configuration value
+   :synopsis: Returns a specific section/configuration value
 
     Gets a single configuration value from within a specific configuration
     section.
@@ -253,7 +253,7 @@ the various configuration values within a running CouchDB instance.
 
 
 .. http:put:: /_config/{section}/{key}
-    :synopsis: Sets the specified configuration value
+   :synopsis: Sets the specified configuration value
 
     Updates a configuration value. The new value should be supplied in the
     request body in the corresponding JSON format. If you are setting a string
@@ -299,7 +299,7 @@ the various configuration values within a running CouchDB instance.
 
 
 .. http:delete:: /_config/{section}/{key}
-    :synopsis: Removes the current setting
+   :synopsis: Removes the current setting
 
     Deletes a configuration value. The returned JSON will be the value of
     the configuration parameter before it was deleted.

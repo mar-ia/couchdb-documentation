@@ -14,26 +14,26 @@
 =============================================
 
 .. toctree::
-    :maxdepth: 3
-    :numbered: 3
+   :maxdepth: 3
+   :numbered: 3
 
-    intro/index
-    install/index
-    config/index
-    replication/index
-    maintenance/index
-    couchapp/index
-    externals
-    query-server/index
-    fauxton/index
-    api/index
-    json-structure
-    experimental
-    contributing
-    guidelines
-    whatsnew/index
-    cve/index
-    about
+   intro/index
+   install/index
+   config/index
+   replication/index
+   maintenance/index
+   couchapp/index
+   externals
+   query-server/index
+   fauxton/index
+   api/index
+   json-structure
+   experimental
+   contributing
+   guidelines
+   whatsnew/index
+   cve/index
+   about
 
 .. This is how you get a TM sign into a link. Haha. Seriously.
 .. |Apache CouchDB(TM)| unicode:: Apache U+0020 CouchDB U+2122

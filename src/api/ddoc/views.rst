@@ -16,7 +16,7 @@
 ==========================================
 
 .. http:get:: /{db}/_design/{ddoc}/_view/{view}
-    :synopsis: Returns results for the specified stored view
+   :synopsis: Returns results for the specified stored view
 
     Executes the specified view function from the specified design document.
 
@@ -140,7 +140,7 @@
 
 
 .. http:post:: /{db}/_design/{ddoc}/_view/{view}
-    :synopsis: Returns certain rows for the specified stored view
+   :synopsis: Returns certain rows for the specified stored view
 
     Executes the specified view function from the specified design document.
     Unlike :get:`/{db}/_design/{ddoc}/_view/{view}` for accessing views, the

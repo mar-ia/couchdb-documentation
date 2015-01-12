@@ -16,7 +16,7 @@
 ========================================
 
 .. http:any:: /{db}/_design/{ddoc}/_rewrite/{path}
-    :synopsis: Rewrites HTTP request for the specified path by using stored routing rules
+   :synopsis: Rewrites HTTP request for the specified path by using stored routing rules
 
     Rewrites the specified path by rules defined in the specified design document.
 
