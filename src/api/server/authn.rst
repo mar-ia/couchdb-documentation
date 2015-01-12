@@ -54,13 +54,13 @@ CouchDB must compute password hash with every request):
     Server: CouchDB (Erlang/OTP)
 
     {
-      "couchdb":"Welcome",
-      "uuid":"0a959b9b8227188afc2ac26ccdf345a6",
-      "version":"1.3.0",
-      "vendor": {
+        "couchdb":"Welcome",
+        "uuid":"0a959b9b8227188afc2ac26ccdf345a6",
         "version":"1.3.0",
-        "name":"The Apache Software Foundation"
-      }
+        "vendor": {
+            "version":"1.3.0",
+            "name":"The Apache Software Foundation"
+        }
     }
 
 .. _Basic authentication: http://en.wikipedia.org/wiki/Basic_access_authentication
@@ -89,7 +89,7 @@ To obtain the first token and thus authenticate a user for the first time, the
 -------------
 
 .. http:post:: /_session
-   :synopsis: Authenticates user by Cookie-based user login
+    :synopsis: Authenticates user by Cookie-based user login
 
     Initiates new session for specified user credentials by providing `Cookie`
     value.
@@ -133,8 +133,8 @@ To obtain the first token and thus authenticate a user for the first time, the
         Host: localhost:5984
 
         {
-          "name": "root",
-          "password": "relax"
+            "name": "root",
+            "password": "relax"
         }
 
     **Response**:
@@ -182,7 +182,7 @@ To obtain the first token and thus authenticate a user for the first time, the
 
 
 .. http:get:: /_session
-   :synopsis: Returns Cookie-based login user information
+    :synopsis: Returns Cookie-based login user information
 
     Returns complete information about authenticated user.
     This information contains :ref:`userctx_object`, authentication method and
@@ -215,26 +215,26 @@ To obtain the first token and thus authenticate a user for the first time, the
         Set-Cookie: AuthSession=cm9vdDo1MjA1NTBDMTqmX2qKt1KDR--GUC80DQ6-Ew_XIw; Version=1; Path=/; HttpOnly
 
         {
-          "info": {
+            "info": {
             "authenticated": "cookie",
             "authentication_db": "_users",
             "authentication_handlers": [
-              "oauth",
-              "cookie",
-              "default"
+                "oauth",
+                "cookie",
+                "default"
             ]
-          },
-          "ok": true,
-          "userCtx": {
-            "name": "root",
-            "roles": [
-                "_admin"
-            ]
-          }
+            },
+            "ok": true,
+            "userCtx": {
+                "name": "root",
+                "roles": [
+                    "_admin"
+                ]
+            }
         }
 
 .. http:delete:: /_session
-   :synopsis: Logout Cookie-based user
+    :synopsis: Logout Cookie-based user
 
     Closes user's session.
 
@@ -263,7 +263,7 @@ To obtain the first token and thus authenticate a user for the first time, the
         Set-Cookie: AuthSession=; Version=1; Path=/; HttpOnly
 
         {
-          "ok": true
+            "ok": true
         }
 
 
@@ -281,7 +281,6 @@ Proxy Authentication
 
         [httpd]
         authentication_handlers = {couch_httpd_oauth, oauth_authentication_handler}, {couch_httpd_auth, cookie_authentication_handler}, {couch_httpd_auth, proxy_authentication_handler}, {couch_httpd_auth, default_authentication_handler}
-
 
 `Proxy authentication` is very useful in case your application already uses
 some external authentication service and you don't want to duplicate users and
@@ -323,24 +322,24 @@ headers to CouchDB with related request:
     Server: CouchDB (Erlang/OTP)
 
     {
-      "info": {
-        "authenticated": "proxy",
-        "authentication_db": "_users",
-        "authentication_handlers": [
-          "oauth",
-          "cookie",
-          "proxy",
-          "default"
-          ]
-      },
-      "ok": true,
-      "userCtx": {
-        "name": "foo",
-        "roles": [
-          "users",
-          "blogger"
-          ]
-      }
+        "info": {
+            "authenticated": "proxy",
+            "authentication_db": "_users",
+            "authentication_handlers": [
+                "oauth",
+                "cookie",
+                "proxy",
+                "default"
+            ]
+        },
+        "ok": true,
+        "userCtx": {
+            "name": "foo",
+            "roles": [
+                "users",
+                "blogger"
+            ]
+        }
     }
 
 
@@ -437,16 +436,16 @@ Both snippets produces similar request and response pair:
 
 
     {
-      "ok": true,
-      "info": {
-        "authenticated": "oauth",
-        "authentication_db": "_users",
-        "authentication_handlers": ["oauth", "cookie", "default"]
-      },
-      "userCtx": {
-        "name": "couchdb_username",
-        "roles": []
-      }
+        "ok": true,
+        "info": {
+            "authenticated": "oauth",
+            "authentication_db": "_users",
+            "authentication_handlers": ["oauth", "cookie", "default"]
+        },
+        "userCtx": {
+            "name": "couchdb_username",
+            "roles": []
+        }
     }
 
 There we request the :ref:`_session <api/auth/session>` resource to ensure
